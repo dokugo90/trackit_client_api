@@ -66,6 +66,10 @@ const io = new Server(server, {
     console.log(err);
   })
 
+  app.get("/", (req, res) => {
+    res.send("Welcome to the TrackIt client API.");
+  })
+
   app.post("/sign_in", signInRoute);
   app.post("/sign_up", signUpRoute);
   app.get("/user", userRoute)
