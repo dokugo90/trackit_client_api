@@ -36,7 +36,7 @@ app.use(
 
 const io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000"
+      origin: "*"
     }
   });  
   
@@ -68,6 +68,10 @@ const io = new Server(server, {
 
   app.get("/", (req, res) => {
     res.send("Welcome to the TrackIt client API.");
+  })
+
+  app.post("/test", (req, res) => {
+    res.send("Post requests works")
   })
 
   app.post("/sign_in", signInRoute);

@@ -22,6 +22,10 @@
           "dest": "server.js"
         },
         {
+            "src": "/test",
+            "dest": "server.js"
+        },
+        {
           "src": "/sign_up",
           "dest": "server.js"
         }
