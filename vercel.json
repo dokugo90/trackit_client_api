@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        
+        "src": "server.js",
+        
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+        {
+            "src": "/user",
+            "dest": "server.js"
+        },
+        {
+          "src": "/sign_in",
+          "dest": "server.js"
+        },
+        {
+          "src": "/sign_up",
+          "dest": "server.js"
+        }
+      ]
+  }
