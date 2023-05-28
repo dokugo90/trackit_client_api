@@ -14,9 +14,9 @@ const signInRoute = require("./routes/sign_in");
 const signUpRoute = require("./routes/sign_up");
 const userRoute = require("./routes/user.js");
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000/', 'https://trackit-client.vercel.app/', "https://www.thunderclient.com/"];
 
-/*app.use(
+app.use(
   cors({
     origin: function (origin, callback) {
       // Check if the request origin is allowed
@@ -27,12 +27,12 @@ const allowedOrigins = ['http://localhost:3000'];
       }
     }
   })
-);*/
+);
 
-app.use(
+/*app.use(
   cors({
   origin: '*'
-}))
+}))*/
 
 const io = new Server(server, {
     cors: {
