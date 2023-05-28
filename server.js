@@ -16,17 +16,13 @@ const userRoute = require("./routes/user.js");
 
 const allowedOrigins = ['http://localhost:3000/', 'https://trackit-client.vercel.app/', "https://www.thunderclient.com/"];
 
+var corsOptions = {
+  origin: ['https://trackit-client.vercel.app', 'http://localhost:3000'],
+};
+
+
 app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Check if the request origin is allowed
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
-  })
+  cors(corsOptions)
 );
 
 /*app.use(
