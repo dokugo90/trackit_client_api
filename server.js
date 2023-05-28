@@ -32,7 +32,7 @@ app.use(
 
 const io = new Server(server, {
     cors: {
-      origin: "*"
+      origin: ['https://trackit-client.vercel.app', 'http://localhost:3000']
     }
   });  
   
