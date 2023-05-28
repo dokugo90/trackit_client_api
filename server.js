@@ -57,9 +57,9 @@ const io = new Server(server, {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();});
   
-    mongoose.connect(`${process.env.MONGODB_CONNECTION_STRING}Trackit`, {
+    mongoose.connect(`mongodb+srv://devbudgetbee:NbLv1mB8bgPLLoRS@trackitdb.ahqhial.mongodb.net/Trackit`, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      //useUnifiedTopology: true
   }).then((_) => {
     console.log("Connected to MongoDb Trackit database");
   }).catch((err) => {
@@ -76,7 +76,7 @@ const io = new Server(server, {
 
   app.post("/sign_in", signInRoute);
   app.post("/sign_up", signUpRoute);
-  app.get("/user", userRoute)
+  app.get("/user", userRoute);
 
 
   server.listen(process.env.PORT || 5000, () => {
