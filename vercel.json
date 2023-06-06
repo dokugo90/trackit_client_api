@@ -28,6 +28,10 @@
         {
           "src": "/sign_up",
           "dest": "server.js"
+        },
+        {
+          "src": "/users",
+          "dest": "server.js"
         }
       ]
   }
