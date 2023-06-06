@@ -30,6 +30,10 @@
           "dest": "server.js"
         },
         {
+          "src": "/admin_sign_in",
+          "dest": "server.js"
+        },
+        {
           "src": "/users",
           "dest": "server.js"
         }
