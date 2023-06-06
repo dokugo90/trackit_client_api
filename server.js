@@ -27,7 +27,7 @@ const api = new EasyPost(apiKey);
 const allowedOrigins = ['http://localhost:3000/', 'https://trackit-client.vercel.app/', "https://www.thunderclient.com/", "https://tracitit-admin-portal.vercel.app/"];
 
 var corsOptions = {
-  origin: ['https://trackit-client.vercel.app', 'http://localhost:3000'],
+  origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app/"],
 };
 
 
