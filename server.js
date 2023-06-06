@@ -16,18 +16,13 @@ const userRoute = require("./routes/user.js");
 const adminSignUpRoute = require("./routes/admin_sign_up");
 const adminSignInRoute = require("./routes/admin_sign_in");
 const usersRoutes = require("./routes/allUsers");
-const EasyPost = require('@easypost/api');
-const ShipEngine = require('shipengine');
 
 const apiKey = 'TEST_MfuPZDLn67liPCK3Z76CjWcf7pb+32o2vVdnhB2I7/Q';
-const shipengine = new ShipEngine(apiKey);
-
-const api = new EasyPost(apiKey);
 
 const allowedOrigins = ['http://localhost:3000/', 'https://trackit-client.vercel.app/', "https://www.thunderclient.com/", "https://tracitit-admin-portal.vercel.app/"];
 
 var corsOptions = {
-  origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app/"],
+  origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app"],
 };
 
 
@@ -42,7 +37,7 @@ app.use(
 
 const io = new Server(server, {
     cors: {
-      origin: ['https://trackit-client.vercel.app', 'http://localhost:3000']
+      origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app"]
     }
   });  
   
@@ -85,27 +80,6 @@ const io = new Server(server, {
   app.get("/user", userRoute);
   app.post("/admin_sign_in", adminSignInRoute);
   app.get("/users", usersRoutes)
-
-  app.post('/track', async (req, res) => {
-    const { carrier, trackingNumber } = req.body;
-
-  try {
-    const { shipments } = await shipengine.trackPackage({
-      tracking_number: trackingNumber,
-      carrier_code: carrier,
-    });
-
-    if (shipments.length > 0) {
-      const { latitude, longitude } = shipments[0].current_status.location;
-      res.json({ latitude, longitude });
-    } else {
-      res.status(404).json({ error: 'No tracking information found for the provided package.' });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while tracking the package.' });
-  }
-  });
   //app.post("/admin_sign_up_private_2343_access=false", adminSignUpRoute)
 
 
