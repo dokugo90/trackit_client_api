@@ -13,7 +13,7 @@ const { Server } = require('socket.io');
 const signInRoute = require("./routes/sign_in");
 const signUpRoute = require("./routes/sign_up");
 const userRoute = require("./routes/user.js");
-const adminSignUpRoute = require("./routes/admin_sign_up");
+//const adminSignUpRoute = require("./routes/admin_sign_up");
 const adminSignInRoute = require("./routes/admin_sign_in");
 const usersRoutes = require("./routes/allUsers");
 
