@@ -36,6 +36,14 @@
         {
           "src": "/users",
           "dest": "server.js"
+        },
+        {
+          "src": "/admin",
+          "dest": "server.js"
+        },
+        {
+          "src": "/userInfo",
+          "dest": "server.js"
         }
       ]
   }

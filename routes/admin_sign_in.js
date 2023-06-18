@@ -8,7 +8,7 @@ const AdminUser = require("../models/admin_user");
 
 router.post("/admin_sign_in",  async (req, res) => {
     try {
-        const user = await AdminUser.findOne({ email: req.body.email }).exec();
+        const user = await AdminUser.findOne({ email: req.body.email.toLowerCase() }).exec();
     
         if (!user) {
           return res.send({ message: 'Account does not exist' });
