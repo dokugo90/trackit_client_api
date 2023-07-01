@@ -6,10 +6,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 var upload = multer();
-const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require('socket.io');
+const app = require("./socket/app");
+const server = require("./socket/server")
+/*const http = require('http');
+const server = http.createServer(app);*/
+//const { Server } = require('socket.io');
+const io = require("./socket/socket")
 const signInRoute = require("./routes/sign_in");
 const signUpRoute = require("./routes/sign_up");
 const userRoute = require("./routes/user.js");
@@ -18,7 +20,11 @@ const adminSignInRoute = require("./routes/admin_sign_in");
 const usersRoutes = require("./routes/allUsers");
 const getUserInfoRoute = require("./routes/getUserInfo");
 const getAdmin = require("./routes/adminUser");
-const getAdminMessagesList = require("./routes/admin_messageList")
+const getAdminMessagesList = require("./routes/admin_messageList");
+const getAllChats = require("./routes/allChats");
+const sendMessage = require("./routes/sendMessage");
+const getChat = require("./routes/getChat")
+const getMessages = require("./routes/getMessages")
 
 const apiKey = 'TEST_MfuPZDLn67liPCK3Z76CjWcf7pb+32o2vVdnhB2I7/Q';
 
@@ -30,7 +36,7 @@ var corsOptions = {
 
 
 app.use(
-  cors(corsOptions)
+  cors({ origin: '*' })
 );
 
 /*app.use(
@@ -38,11 +44,12 @@ app.use(
   origin: '*'
 }))*/
 
-const io = new Server(server, {
+/* "https://www.thunderclient.com/" */ /// Include in origin options when in development.
+/*const io = new Server(server, {
     cors: {
-      origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app" /* "https://www.thunderclient.com/" */]
+      origin: ['https://trackit-client.vercel.app', 'http://localhost:3000', "https://tracitit-admin-portal.vercel.app" ]
     }
-  });  
+  });*/
   
   
   app.use(bodyParser.json()); 
@@ -74,10 +81,6 @@ const io = new Server(server, {
     res.send("Welcome to the TrackIt client API.");
   })
 
-  app.post("/test", (req, res) => {
-    res.send("Post requests works")
-  })
-
   app.post("/sign_in", signInRoute);
   app.post("/sign_up", signUpRoute);
   app.get("/user", userRoute);
@@ -85,11 +88,17 @@ const io = new Server(server, {
   app.post("/admin_sign_in", adminSignInRoute);
   app.get("/users", usersRoutes)
   app.post("/userInfo", getUserInfoRoute)
-  app.post("/adminMessagesList", getAdminMessagesList)
+  app.post("/adminMessagesList", getAdminMessagesList);
+  app.get("/chats", getAllChats);
+  app.post("/sendMessage", sendMessage);
+  app.post("/getChat", getChat);
+  app.post("/getMessages", getMessages)
   //app.post("/admin_sign_up_private_2343_access=false", adminSignUpRoute)
 
 
   server.listen(process.env.PORT || 5000, () => {
     console.log('listening on *:5000');
   });
+
+
 

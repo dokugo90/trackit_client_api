@@ -48,6 +48,22 @@
         {
           "src": "/adminMessagesList",
           "dest": "server.js"
+        },
+        {
+          "src": "/chats",
+          "dest": "server.js"
+        },
+        {
+          "src": "/sendMessage",
+          "dest": "server.js"
+        },
+        {
+          "src": "/getMessages",
+          "dest": "server.js"
+        },
+        {
+          "src": "/getChat",
+          "dest": "server.js"
         }
       ]
   }
